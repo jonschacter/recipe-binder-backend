@@ -3,4 +3,5 @@ class User < ApplicationRecord
     
     validates :username, presence: true
     validates :username, uniqueness: true
+    validates :binder_name, length: { maximum: 30 }
 end
