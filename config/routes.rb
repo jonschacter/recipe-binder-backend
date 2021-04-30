@@ -5,4 +5,5 @@ Rails.application.routes.draw do
     post "/signup", to: "users#create"
 
     resources :users, only: [:update]
+    resources :categories, only: [:index]
 end
