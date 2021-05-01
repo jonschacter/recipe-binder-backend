@@ -9,4 +9,19 @@ class CategoriesController < ApplicationController
             }
         end
     end
+
+    def update
+        updated = []
+
+        params[:categories].each do |cat|
+            id = cat[:id]
+            categoryForUpdate = Category.find_by(id: id)
+            if categoryForUpdate
+                categoryForUpdate.update(position: cat[:position])
+                updated << categoryForUpdate
+            end
+        end
+
+        render json: updated, each_serializer: CategorySerializer
+    end
 end
