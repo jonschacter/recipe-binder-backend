@@ -24,4 +24,24 @@ class CategoriesController < ApplicationController
 
         render json: updated, each_serializer: CategorySerializer
     end
+
+    def destroy
+        category = Category.find_by(id: params[:id])
+        if category
+            if category.user == current_user
+                category.destroy
+                render :json => {
+                    notice: "Review successfully delete"
+                }
+            else
+                render :json => {
+                    error: "You are not authorized to delete this review"
+                }
+            end
+        else
+            render :json => {
+                error: "Category could not be found"
+            }
+        end
+    end
 end

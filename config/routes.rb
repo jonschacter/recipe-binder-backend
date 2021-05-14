@@ -6,5 +6,5 @@ Rails.application.routes.draw do
     patch "/categories/reorder", to: "categories#update"
 
     resources :users, only: [:update]
-    resources :categories, only: [:index]
+    resources :categories, only: [:index, :destroy]
 end
